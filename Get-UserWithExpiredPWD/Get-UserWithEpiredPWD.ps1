@@ -1,0 +1,1 @@
+Get-ADUser -filter * -properties PasswordLastSet, PasswordExpired, PasswordNeverExpires | sort Name | Where {$_.PasswordExpired -eq 'true'} | select Name, Samaccountname, PasswordExpired, PasswordLastSet | Out-GridView -Title "User with expired password" -OutputMode Multiple
