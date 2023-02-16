@@ -10,12 +10,16 @@ foreach ($dp in $dps) {
     Write-host ", please wait..." -ForegroundColor Yellow
     foreach ($port in $ports) {
         Write-host "`tTesting Port " -NoNewline -ForegroundColor Cyan
-        Write-Host $port
+        Write-Host "$port " -nonewline
         $test = tnc -ComputerName $dp -port $port -InformationLevel Detailed
+        if ($test.TcpTestSucceeded -eq "False") {
+            Write-host "Succeeded :)" -ForegroundColor Green
+        } else {
+            #Write-host "Failed :)" -ForegroundColor RED
+        }    
         $results += $test
     }
 }
-Write-host "`nDP's Completed :)`n" -ForegroundColor Green
 $bad = @()
 $good = @()
 foreach ($result in $results) {
@@ -26,7 +30,13 @@ foreach ($result in $results) {
     }
 }
 
-$bad | FT -AutoSize
+if ($bad.count -gt 0) {
+    Write-warning "`nPort Test, Failed, failures listed below :("
+    $bad | FT -AutoSize
+}else{
+    Write-host "Port test completed successfully :)!" -ForegroundColor Green
+}
 #if you want the GOOD ports, uncomment below
 #$good | FT -AutoSize
+
 
