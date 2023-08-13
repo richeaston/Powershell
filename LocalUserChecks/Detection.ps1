@@ -7,7 +7,7 @@ If (-not ([Security.Principal.WindowsPrincipal] [Security.Principal.WindowsIdent
 
 $bad = 0
 
-invoke-webrequest -uri [URL to SAS blob storage] -OutFile c:\Windows\temp\excluded.txt
+invoke-webrequest -uri "[url to sas storage excluded.txt]" -OutFile c:\Windows\temp\excluded.txt
 $excludedmembers = get-content C:\Windows\temp\excluded.txt
 
 $localadmins = get-localgroupmember -Group Administrators | Where-Object { $_.PrincipalSource -ne 'Local' -and $_.objectclass -eq 'user' -and $_.name -ne "$env:userdomain\Domain Admins" } | Select-Object -ExpandProperty Name
