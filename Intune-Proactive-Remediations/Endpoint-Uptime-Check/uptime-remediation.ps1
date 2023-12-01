@@ -75,7 +75,7 @@ Invoke-WebRequest -Uri $HeroImageUri -OutFile $HeroImage
 $Scenario = 'reminder' # <!-- Possible values are: reminder | short | long -->
         
 # Load Toast Notification text
-$AttributionText = "Go-Ahead Group PLC"
+$AttributionText = "[Your company here]"
 $HeaderText = "$($greeting), a reboot is required!"
 $TitleText = "Your device has not performed a reboot in the last $($Uptime.OsUptime.Days) days"
 $BodyText1 = "For performance and stability reasons we suggest a reboot at least once a week."
