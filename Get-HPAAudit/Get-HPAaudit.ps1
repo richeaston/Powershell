@@ -1,4 +1,5 @@
 #This script requires the PSWriteWord Module to run, this can be installed by 
+#credit: PSwriteword module Evotec
 #install-Module -name PSWriteWord
 
 
