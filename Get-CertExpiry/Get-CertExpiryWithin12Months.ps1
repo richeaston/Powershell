@@ -1,4 +1,5 @@
 ﻿Import-Module WebAdministration -ErrorAction SilentlyContinue
+#credit: PSwriteword author evotec
 Import-Module PSWriteWord -force -ErrorAction SilentlyContinue
 Clear-Host
 $scriptpath = $MyInvocation.MyCommand.Path
