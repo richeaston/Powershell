@@ -75,6 +75,7 @@ foreach ($dp in (Get-CMDistributionPoint | Select-Object -ExpandProperty Network
     }
 }
 
+#seperate good results from bad ones
 $bad = @()
 $good = @()
 foreach ($result in $results) {
@@ -85,6 +86,7 @@ foreach ($result in $results) {
     }
 }
 
+Write-host "`n`n"
 if ($bad.count -gt 0) {
     Write-warning "`nPort Test, Failed, failures listed below :("
     $bad | Format-Table -AutoSize
