@@ -5,8 +5,8 @@ Clear-Host
 # This script was auto-generated at '02/04/2024 15:45:42'.
 
 # Site configuration
-$SiteCode = "GRP" # Site code e.g. ABC 
-$ProviderMachineName = "gaguxbmem01.gag.citrix" # SMS Provider machine name e.g sccm.contoso.com
+$SiteCode = "[SiteCode]" # Site code e.g. ABC 
+$ProviderMachineName = "[SiteServer FQDN]" # SMS Provider machine name e.g sccm.contoso.com
 
 # Customizations
 $initParams = @{}
