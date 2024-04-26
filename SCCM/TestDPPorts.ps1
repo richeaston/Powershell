@@ -31,13 +31,9 @@ Set-Location "$($SiteCode):\" @initParams
 #changed this to Dynamic in the Foreach loop
 #$dps = @("[FQDN of DP1]", "[FQDN of DP2]")
 
-
-$ports = @(80, 135, 139, 443, 445, 10123)
-#$ports = @(67, 68, 80, 135, 139, 443, 445, 4011, 8530, 8531, 10123) #full range of ports inc pxe ports
-
 #difined array
 $results = @()
-Write-host "`n`n`n`n`n`n`n`n"
+#Write-host "`n`n`n`n`n`n`n`n"
 
 #loop through each DP
 foreach ($dp in (Get-CMDistributionPoint | Select-Object -ExpandProperty NetworkOSPath)) {
@@ -45,7 +41,16 @@ foreach ($dp in (Get-CMDistributionPoint | Select-Object -ExpandProperty Network
 	Write-host "`nProcessing " -NoNewline -ForegroundColor Yellow
     Write-host $CleanedDPName -NoNewline
     Write-host ", please wait..." -ForegroundColor Yellow
-    
+    #check if DP is also a management point and check 10123 port
+    $ismanagementpoint = Get-CMManagementPoint -ErrorAction SilentlyContinue| Where-Object {$DP -match $_.NetworkOSpath}
+	if ($ismanagementpoint) {
+        $ports = @(80, 135, 139, 443, 445, 10123)
+        #$ports = @(67, 68, 80, 135, 139, 443, 445, 4011, 8530, 8531, 10123) #full range of ports inc pxe ports
+    } else {
+        $ports = @(80, 135, 139, 443, 445)
+        #$ports = @(67, 68, 80, 135, 139, 443, 445, 4011, 8530, 8531) #full range of ports inc pxe, wsus ports
+    }
+	
     foreach ($port in $ports) {
         Write-host "`tTesting Port " -NoNewline -ForegroundColor Cyan
         Write-Host "$port " -nonewline
@@ -75,7 +80,6 @@ foreach ($dp in (Get-CMDistributionPoint | Select-Object -ExpandProperty Network
     }
 }
 
-#seperate good results from bad ones
 $bad = @()
 $good = @()
 foreach ($result in $results) {
@@ -95,5 +99,3 @@ if ($bad.count -gt 0) {
 }
 #if you want the GOOD ports, uncomment below
 #$good | FT -AutoSize
-
-
