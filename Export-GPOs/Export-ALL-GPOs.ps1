@@ -5,9 +5,9 @@ $array = @()
 foreach ($gpo in $gpos){ 
     
     $OUTGPO = [PSCustomObject] @{
-        'Name' = $gpo.DisplayName
-        'Enabled' = $gpo.GPOStatus
-        'Description' = $gpo.Description
+        Name = $gpo.DisplayName
+        LinkEnabled = $gpo.GPOStatus
+        Description = $gpo.Description
     }
     Write-host "Processing " -NoNewline
     Write-host $OUTGPO.Name -ForegroundColor Yellow
