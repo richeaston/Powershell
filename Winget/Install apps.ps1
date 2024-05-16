@@ -18,8 +18,8 @@ else {
             }
         }
         else {
-            Write-Host "$($app.Name) Excluded.!" -ForegroundColor Magenta
+            Write-Host "⚠️  $($app.Name) Excluded.!" -ForegroundColor Magenta
         }
     }
-    Write-host "`nFile Catalogue Processed." -ForegroundColor Green
+    Write-host "`n✔️  File Catalogue Processed." -ForegroundColor Green
 }
