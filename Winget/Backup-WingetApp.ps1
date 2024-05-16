@@ -26,3 +26,4 @@ $wingetOutput | ForEach-Object {
 }
 if (test-path .\My-Installed-apps.csv) {remove-item -Path .\My-Installed-apps.csv -force}
 $results | export-csv ".\My-Installed-apps.csv" -NoClobber -NoTypeInformation -Force
+Write-host "`n Backup Completed." -foregroundcolor Green
