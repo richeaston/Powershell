@@ -16,7 +16,7 @@ if (Test-Path $bookmarksFilePath) {
         $results = @()
 
         foreach ($node in $nodes) {
-            if ($node.name -eq '[favfolder]' -and $node.type -eq 'folder') {
+            if ($node.name -eq '[favfolder]' -and $node.type -eq 'folder') { #Change the [favfolder] to one with the bookmarks you'd like to use without the [ ] brakcets
                 foreach ($child in $node.children) {
                     if ($child.type -eq 'url') {
                         $results += [PSCustomObject]@{
