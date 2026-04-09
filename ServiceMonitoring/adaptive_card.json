@@ -1,0 +1,66 @@
+{
+    "type": "message",
+    "attachments": [
+        {
+            "contentType": "application/vnd.microsoft.card.adaptive",
+            "contentUrl": null,
+            "content": {
+                "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
+                "type": "AdaptiveCard",
+                "version": "1.4",
+                "body": [
+                    {
+                        "type": "Container",
+                        "items": [
+                            {
+                                "type": "TextBlock",
+                                "text": "CRITICAL ALERT: ${service} Service Stopped",
+                                "weight": "Bolder",
+                                "size": "Large",
+                                "color": "Attention"
+                            }
+                        ]
+                    },
+                    {
+                        "type": "Container",
+                        "items": [
+                            {
+                                "type": "FactSet",
+                                "facts": [
+                                    {
+                                        "title": "Server Name",
+                                        "value": "${serverName}"
+                                    },
+                                    {
+                                        "title": "Service",
+                                        "value": "${service}"
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "type": "Container",
+                        "style": "emphasis",
+                        "items": [
+                            {
+                                "type": "TextBlock",
+                                "text": "Description",
+                                "weight": "Bolder",
+                                "size": "Small",
+                                "isSubtle": true,
+                                "wrap": true
+                            },
+                            {
+                                "type": "TextBlock",
+                                "text": "The ${service} service has failed and is in a ${state} state. Please remote onto ${serverName} to investigate.",
+                                "wrap": true
+                            }
+                        ],
+                        "spacing": "Medium"
+                    }
+                ]
+            }
+        }
+    ]
+}
